@@ -158,7 +158,9 @@ module Danger
         all_modified_files_coverage ||= begin
           modified_files = git.modified_files.nil? ? [] : git.modified_files
           added_files = git.added_files.nil? ? [] : git.added_files
-          all_changed_files = modified_files | added_files
+#           all_changed_files = modified_files | added_files
+          all_changed_files =  added_files
+          
           @project.coverage_files.select do |file|
             all_changed_files.include? file.source_file_pathname_relative_to_repo_root.to_s
           end
